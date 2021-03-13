@@ -19,9 +19,16 @@ const loginUser = async (req,res)=>{
          let token = jwt.sign({email:userDetailsInDatabase.email,userId:userDetailsInDatabase._id,
             Status : true
         },process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRE});
-            userDetailsInDatabase.token = token
+
+        // Refresh Token
+        let refreshToken = jwt.sign({email:userDetailsInDatabase.email,userId:userDetailsInDatabase._id,
+            Status : true
+        },process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRE_REFRESH});
+            userDetailsInDatabase.token = refreshToken
             userDetailsInDatabase.save()
-         res.json({Status:200,"Response":token})
+
+         res.json({Status:200,"Response":token,"RefreshToken":refreshToken});
+
         } catch (error) {
         res.json({RESPONSE: error.message})
     }  
