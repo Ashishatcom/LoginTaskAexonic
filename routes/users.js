@@ -10,6 +10,6 @@ router.post('/',validatation.signup,registerController.saveUserRegistration);
 router.post('/login',validatation.signup,loginController.loginUser);
 router.post('/update',checkOff,updateController.updateUser);
 router.post('/search',checkOff,searchController.searchUser);
-router.get('/pagination/:id',checkOff,searchController.Pagination);
+router.get('/pagination',checkOff,searchController.Pagination);
 
 module.exports = router;

@@ -9,10 +9,13 @@ const loginUser = async (req,res)=>{
 
     try {
          let loginDetails = {email:req.body.email,password:req.body.password}
+
          let userDetailsInDatabase = await UserMethod.findUserDetails(loginDetails);
-         if(!userDetailsInDatabase) throw new Error(APPECTATION.STATUSMESSAGE.NOT_FOUND)
+         if(!userDetailsInDatabase) throw new Error(APPECTATION.STATUSMESSAGE.NOT_FOUND);
+
          let comparedPassword =  await UserMethod.isPasswordMatch(loginDetails,userDetailsInDatabase);
-         if(!comparedPassword)  throw new Error(APPECTATION.STATUSMESSAGE.PASSWORD_NOT_MATCH)
+         if(!comparedPassword)  throw new Error(APPECTATION.STATUSMESSAGE.PASSWORD_NOT_MATCH);
+         // Creating  Token
          let token = jwt.sign({email:userDetailsInDatabase.email,userId:userDetailsInDatabase._id,
             Status : true
         },process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRE});
