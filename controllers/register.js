@@ -19,7 +19,7 @@ const saveUserRegistration = async (req,res)=>{
         });
         let saveUserRegistration = await userFormDetails.save();
         if(!saveUserRegistration) throw new Error(APPECTATION.STATUMESSAGE.DATA_NOT_SAVE);
-        res.json({Status:200,"Response":APPECTATION.STATUMESSAGE.DATA_SAVE})
+        res.json({Status:201,"Response":APPECTATION.STATUMESSAGE.DATA_SAVE})
         
     } catch (error) {
         res.json({RESPONSE: error.message})
