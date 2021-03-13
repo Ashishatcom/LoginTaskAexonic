@@ -6,7 +6,7 @@ const saveUserRegistration = async (req,res)=>{
     try {
         // Checking If USER Exist 
         let existingUser = await User.findOne({email:req.body.email})
-        if(existingUser) throw new Error(APPECTATION.STATUMESSAGE.EMAIL_EXIST);
+        if(existingUser) throw new Error(APPECTATION.STATUSMESSAGE.EMAIL_EXIST);
         // Hashing PAssword 
         let hashedPassword = await UserMethod.userHashingPassword(req.body.password);
 
@@ -18,11 +18,11 @@ const saveUserRegistration = async (req,res)=>{
             password:hashedPassword
         });
         let saveUserRegistration = await userFormDetails.save();
-        if(!saveUserRegistration) throw new Error(APPECTATION.STATUMESSAGE.DATA_NOT_SAVE);
-        res.json({Status:201,"Response":APPECTATION.STATUMESSAGE.DATA_SAVE})
+        if(!saveUserRegistration) throw new Error(APPECTATION.STATUSMESSAGE.DATA_NOT_SAVE);
+        res.json({Status:201,"Response":APPECTATION.STATUSMESSAGE.DATA_SAVE})
         
     } catch (error) {
-        res.json({RESPONSE: error.message})
+        res.json({RESPONSE: error.message});
     }
   
 }

@@ -35,7 +35,7 @@ const Pagination = async(req,res)=>{
         // console.log(page);
         let limit = 2;
         const searchUserByPagination = await User.find({},{_id:1, firstName:1,lastName:1,email:1,phone:1 }).skip((page-1)*limit).limit(limit);
-        if(!searchUserByPagination) throw new Error (APPECTATION.STATUMESSAGE.YOU_HAVE_REACHED_MAX_LIMIT)
+        if(!searchUserByPagination) throw new Error (APPECTATION.STATUSMESSAGE.YOU_HAVE_REACHED_MAX_LIMIT)
         res.json({Status:200,"Response":searchUserByPagination})
     } catch (error) {
       res.json({RESPONSE: error.message})

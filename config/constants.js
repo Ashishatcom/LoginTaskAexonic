@@ -18,7 +18,7 @@ if( ENV === 'development' ) {
 
 } 
 
-const STATUMESSAGE = {
+const STATUSMESSAGE = {
 	EMAIL_EXIST:"EMAIL_ALREDY_EXIST",
 	NOT_FOUND:"USER_NOT_FOUND",
 	PASSWORD_NOT_MATCH:"PASSWORD_NOT_MATCH",
@@ -32,5 +32,5 @@ const STATUMESSAGE = {
 module.exports = {
 	MONGO_URI : DB,
 	PORT,
-	STATUMESSAGE		
+	STATUSMESSAGE		
 }

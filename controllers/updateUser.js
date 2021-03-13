@@ -15,13 +15,13 @@ const updateUser = async (req,res)=>{
         }
         //   console.log(req.UserData);
          let userDetailsInDatabase = await UserMethod.findSpeficUserDetails(validUser);
-         if(!userDetailsInDatabase) throw new Error(APPECTATION.STATUMESSAGE.NOT_FOUND)
+         if(!userDetailsInDatabase) throw new Error(APPECTATION.STATUSMESSAGE.NOT_FOUND)
          userDetailsInDatabase.firstName = updateDetails.firstName;
          userDetailsInDatabase.lastName  = updateDetails.lastNAme;
          userDetailsInDatabase.phone     = updateDetails.phone
          let saveUpdateDetails = await userDetailsInDatabase.save();
-         if(!saveUpdateDetails) throw new Error(APPECTATION.STATUMESSAGE.SOMETHING_WRONG_HAPPEN_PLEASE_TRY_ONCE_AGAIN)   
-         res.json({Status:200,"RESPONSE":APPECTATION.STATUMESSAGE.DATA_UPDATED})
+         if(!saveUpdateDetails) throw new Error(APPECTATION.STATUSMESSAGE.SOMETHING_WRONG_HAPPEN_PLEASE_TRY_ONCE_AGAIN)   
+         res.json({Status:200,"RESPONSE":APPECTATION.STATUSMESSAGE.DATA_UPDATED})
         } catch (error) {
         res.json({RESPONSE: error.message})
     }
