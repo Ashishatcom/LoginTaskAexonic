@@ -1,7 +1,7 @@
 const User = require('../models/users');
 const APPECTATION = require('../config/constants')
 const UserMethod = new User();
-require('dotenv').config(); 
+// require('dotenv').config(); 
 const jwt = require('jsonwebtoken');
 
 
@@ -18,12 +18,12 @@ const loginUser = async (req,res)=>{
          // Creating  Token
          let token = jwt.sign({email:userDetailsInDatabase.email,userId:userDetailsInDatabase._id,
             Status : true
-        },process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRE});
+        },APPECTATION.ENVIROMENT.JWT_SECRET,{ expiresIn: APPECTATION.ENVIROMENT.JWT_EXPIRE});
 
         // Refresh Token
         let refreshToken = jwt.sign({email:userDetailsInDatabase.email,userId:userDetailsInDatabase._id,
             Status : true
-        },process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRE_REFRESH});
+        },APPECTATION.ENVIROMENT.JWT_SECRET,{ expiresIn: APPECTATION.ENVIROMENT.JWT_EXPIRE_REFRESH});
             userDetailsInDatabase.token = refreshToken
             userDetailsInDatabase.save()
 

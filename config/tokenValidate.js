@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const {ENVIROMENT} = require('../config/constants')
 module.exports = (req,res,next)=>{
     try {
         //    console.log(req.headers);
         const token = req.headers.authorization.split(" ")[1]
-        const decode = jwt.verify(token , process.env.JWT_SECRET);
+        const decode = jwt.verify(token , ENVIROMENT.JWT_SECRET);
               decode.token = token;
         req.UserData =  decode;
         next()

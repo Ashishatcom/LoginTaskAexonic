@@ -17,7 +17,11 @@ if( ENV === 'development' ) {
 	PORT 	= process.env.PRODPORT;
 
 } 
-
+const ENVIROMENT={
+    JWT_SECRET : process.env.JWT_SECRET,
+	JWT_EXPIRE : process.env.JWT_EXPIRE,
+	JWT_EXPIRE_REFRESH : process.env.JWT_EXPIRE_REFRESH,
+}
 const STATUSMESSAGE = {
 	EMAIL_EXIST:"EMAIL_ALREDY_EXIST",
 	NOT_FOUND:"USER_NOT_FOUND",
@@ -32,5 +36,6 @@ const STATUSMESSAGE = {
 module.exports = {
 	MONGO_URI : DB,
 	PORT,
-	STATUSMESSAGE		
+	STATUSMESSAGE,
+	ENVIROMENT	
 }
