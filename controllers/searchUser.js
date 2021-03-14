@@ -17,12 +17,13 @@ const searchUser = async (req,res)=>{
         }
         let searchedUser = await User.find(
         {$or:[
-         { firstName:{"$regex": `.*${updateDetails.firstName}.*`}},
-          {lastName:{"$regex": `.*${updateDetails.lastName}.*`}},
-          {phone:{"$regex": `.*${updateDetails.phone}.*`}},
-          {email:{"$regex": `.*${updateDetails.email}.*`}}
-        ]},{_id:1, firstName:1,lastName:1,email:1,phone:1 })
-         res.json(searchedUser)
+         { firstName:{"$regex": `.*${updateDetails.firstName}.*`,$options:'i'}},
+          {lastName:{"$regex": `.*${updateDetails.lastName}.*`,$options:'i'}},
+          {phone:{"$regex": `.*${updateDetails.phone}.*`,$options:'i'}},
+          {email:{"$regex": `.*${updateDetails.email}.*`,$options:'i'}}
+        ]},{_id:1, firstName:1,lastName:1,email:1,phone:1 });
+
+        res.json({Status:200,"Response":searchedUser});
         } catch (error) {
         res.json({RESPONSE: error.message})
     }
@@ -36,7 +37,7 @@ const Pagination = async(req,res)=>{
 
         const searchUserByPagination = await User.find({},{_id:1, firstName:1,lastName:1,email:1,phone:1 }).skip((pageQuery-1)*limitQuery).limit(limitQuery);
         if(!searchUserByPagination) throw new Error (APPECTATION.STATUSMESSAGE.YOU_HAVE_REACHED_MAX_LIMIT)
-        res.json({Status:200,"Response":searchUserByPagination})
+        res.json({Status:200,"Response":searchUserByPagination});
     } catch (error) {
       res.json({RESPONSE: error.message})
     }
