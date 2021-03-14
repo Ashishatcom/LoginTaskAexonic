@@ -21,7 +21,7 @@ const searchUser = async (req,res)=>{
           {lastName:{"$regex": `.*${updateDetails.lastName}.*`}},
           {phone:{"$regex": `.*${updateDetails.phone}.*`}},
           {email:{"$regex": `.*${updateDetails.email}.*`}}
-        ]})
+        ]},{_id:1, firstName:1,lastName:1,email:1,phone:1 })
          res.json(searchedUser)
         } catch (error) {
         res.json({RESPONSE: error.message})
