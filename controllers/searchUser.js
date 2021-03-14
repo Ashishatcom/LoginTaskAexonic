@@ -31,10 +31,10 @@ const searchUser = async (req,res)=>{
 
 const Pagination = async(req,res)=>{
     try {
-        let PageQuery = req.query.page ? parseInt(req.query.page):1;
+        let pageQuery = req.query.page ? parseInt(req.query.page):1;
         let limitQuery = req.query.limit ? parseInt(req.query.limit):2;
 
-        const searchUserByPagination = await User.find({},{_id:1, firstName:1,lastName:1,email:1,phone:1 }).skip((PageQuery-1)*limitQuery).limit(limitQuery);
+        const searchUserByPagination = await User.find({},{_id:1, firstName:1,lastName:1,email:1,phone:1 }).skip((pageQuery-1)*limitQuery).limit(limitQuery);
         if(!searchUserByPagination) throw new Error (APPECTATION.STATUSMESSAGE.YOU_HAVE_REACHED_MAX_LIMIT)
         res.json({Status:200,"Response":searchUserByPagination})
     } catch (error) {
