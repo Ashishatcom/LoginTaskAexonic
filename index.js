@@ -1,14 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+var morgan = require('morgan');
 const { PORT } = require('./config/constants');
 const { connect } = require('./commons/services/mongodb');
 
 const user = require('./routes/users');
 const app = express();
 
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(express.json()); 
+app.use(express.urlencoded({extended:false}));
+app.use(morgan()); 
 app.use('/',user);
 
 connect();
