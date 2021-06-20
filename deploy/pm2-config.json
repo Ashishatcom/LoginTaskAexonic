@@ -1,0 +1,14 @@
+{
+    "apps": [{
+        "name": "UTED_PRE_PROD",
+        "script": "app.js",
+        "args": "",
+        "watch": false,
+        "log_date_format": "DD-MM HH:mm:ss.SSS",
+        "env": {
+            "NODE": "development",
+            "PORT_NUMBER": 9000,
+            "RUN_CRONS": true
+        }
+    }]
+}
