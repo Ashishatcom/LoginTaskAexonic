@@ -6,7 +6,7 @@ const searchController = require('../../controllers/searchUser');
 const validatation = require('../../config/inputValidation')
 const checkOff = require('../../config/tokenValidate')
 
-console.log("Second File");
+// console.log("Second File");
 router.post('/',validatation.signup,registerController.saveUserRegistration);
 router.post('/login',validatation.signup,loginController.loginUser);
 router.post('/update',checkOff,updateController.updateUser);

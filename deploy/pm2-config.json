@@ -1,7 +1,7 @@
 {
     "apps": [{
-        "name": "UTED_PRE_PROD",
-        "script": "app.js",
+        "name": "PERSONAL_PROD",
+        "script": "index.js",
         "args": "",
         "watch": false,
         "log_date_format": "DD-MM HH:mm:ss.SSS",

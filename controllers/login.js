@@ -1,12 +1,11 @@
 const User = require('../models/users');
 const APPECTATION = require('../config/constants')
 const UserMethod = new User();
+const Response = require('../config/response')
 // require('dotenv').config(); 
 const jwt = require('jsonwebtoken');
 
-
 const loginUser = async (req,res)=>{
-
     try {
          let loginDetails = {email:req.body.email,password:req.body.password}
 
@@ -26,11 +25,12 @@ const loginUser = async (req,res)=>{
         },APPECTATION.ENVIROMENT.JWT_SECRET,{ expiresIn: APPECTATION.ENVIROMENT.JWT_EXPIRE_REFRESH});
             userDetailsInDatabase.token = refreshToken
             userDetailsInDatabase.save()
-
-         res.json({Status:200,"Response":token,"RefreshToken":refreshToken});
+            Response(res,APPECTATION.STATUSCODE.OK,APPECTATION.STATUSCODE.OK,{"token":token,"RefreshToken":refreshToken},APPECTATION.STATUSMESSAGE.USER_LOGEDIN)
+        //  res.json({Status:200,"Response":token,"RefreshToken":refreshToken});
 
         } catch (error) {
-        res.json({RESPONSE: error.message})
+            Response(res,APPECTATION.STATUSCODE.OK,APPECTATION.STATUSCODE.NOT_FOUND,null,APPECTATION.STATUSMESSAGE.NOT_FOUND);
+        // res.json({RESPONSE: error.message})
     }  
 }
 module.exports = {
