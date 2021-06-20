@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const registerController = require('../controllers/register');
-const loginController = require('../controllers/login');
-const updateController = require('../controllers/updateUser');
-const searchController = require('../controllers/searchUser');
-const validatation = require('../config/inputValidation')
-const checkOff = require('../config/tokenValidate')
+const registerController = require('../../controllers/register');
+const loginController = require('../../controllers/login');
+const updateController = require('../../controllers/updateUser');
+const searchController = require('../../controllers/searchUser');
+const validatation = require('../../config/inputValidation')
+const checkOff = require('../../config/tokenValidate')
 
+console.log("Second File");
 router.post('/',validatation.signup,registerController.saveUserRegistration);
 router.post('/login',validatation.signup,loginController.loginUser);
 router.post('/update',checkOff,updateController.updateUser);
