@@ -1,5 +1,5 @@
 const express = require('express');
-var morgan = require('morgan');
+const morgan = require('morgan');
 const { PORT } = require('./config/constants');
 const { connect } = require('./commons/services/mongodb');
 
@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json()); 
 app.use(express.urlencoded({extended:false}));
-app.use(morgan()); 
+app.use(morgan('dev')); 
 app.use('/',user);
 
 connect();
